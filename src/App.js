@@ -1,24 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
+import { useSelector } from 'react-redux';
+import List from './components/List';
+import BookDetails from './components/BookDetails';
+import Edit from './components/Edit';
+import NewBook from './components/NewBook';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+  let selected = useSelector(st => st.selectedBook);
+  let seletedForEdit = useSelector(st => st.selectedBookForEdit);
+  let addB = useSelector(st => st.adding)
+  return (<>
+    <List />
+    {selected && <BookDetails />}
+    {seletedForEdit && <Edit />}
+    {addB && <NewBook />}
+  </>
   );
 }
 
